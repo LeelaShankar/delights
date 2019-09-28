@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { TabsPageRoutingModule } from './tabs.router.module';
 
 import { TabsPage } from './tabs.page';
+import { Router } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -16,4 +17,8 @@ import { TabsPage } from './tabs.page';
   ],
   declarations: [TabsPage]
 })
-export class TabsPageModule {}
+export class TabsPageModule {
+  constructor(public router: Router) {
+    console.log('in tabs modle', this.router.url)
+  }
+}

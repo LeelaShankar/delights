@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Router } from '@angular/router';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/tab/tabs/tab1',
+    pathMatch: 'full'
+  }, {
     path: 'tabs',
     component: TabsPage,
     children: [
@@ -39,20 +43,20 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: 'tab/tabs/tab1',
         pathMatch: 'full'
       }
     ]
-  },
-  {
-    path: '',
-    redirectTo: '/tabs/tab1',
-    pathMatch: 'full'
   }
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule {
+  constructor(public router: Router) {
+    console.log('in tab routing module', this.router.url)
+  }
+}

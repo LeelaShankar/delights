@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { NavController, ModalController } from '@ionic/angular';
+import { WebServiceService } from '../web-service.service';
+import { ViewDelightsDTO } from '../Interfaces/ViewDelightsDTO';
+import { ViewDelightsPage } from '../view-delights/view-delights.page';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +11,33 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  constructor(public navCtrl: NavController, public service: WebServiceService, public modalCtrl: ModalController) { }
+
+
+  logout() {
+    localStorage.clear();
+    this.navCtrl.navigateRoot('')
+  }
+
+  async viewDelights(res) {
+    let modal = await this.modalCtrl.create({
+      component: ViewDelightsPage,
+      componentProps: { data: res }
+    });
+    return await modal.present();
+  }
+
+  openDelights() {
+    let self = this;
+    console.log('in open delights');
+    let params: ViewDelightsDTO = new ViewDelightsDTO();
+    params.organizationid = localStorage.getItem('organisationId');
+    params.employeeid = localStorage.getItem('employeeId')
+    let viewDelightsObs = this.service.viewMyDelights('api/emptransactions/lockvalues', params)
+    viewDelightsObs.subscribe(res => {
+      console.log('resss', res)
+      self.viewDelights(res)
+    })
+  }
 
 }

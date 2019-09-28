@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  { path: '', loadChildren: './login/login.module#LoginPageModule' },
   {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  }
+    path: 'tab', loadChildren: "./tabs/tabs.module#TabsPageModule"
+  },
+  { path: 'temp-password', loadChildren: './temp-password/temp-password.module#TempPasswordPageModule' },
+  { path: 'view-delights', loadChildren: './view-delights/view-delights.module#ViewDelightsPageModule' }
 ];
 @NgModule({
   imports: [
@@ -13,4 +15,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
