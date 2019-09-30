@@ -1,9 +1,37 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Delights</ion-title>
+    <ion-title>
+      Delights
+      <ion-icon name="log-out" style="float: right" (click)="logout()"></ion-icon>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  In View Delights page
+
+  <ion-fab vertical="top" horizontal="middle" style="margin-left:37%">
+
+    <ion-fab-button>
+      <ion-icon name="close" (click)="close()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-list style="margin-top: 20%">
+    <ion-item *ngFor="let cluster of clusters">
+      <ion-col>
+        <ion-row>
+          <ion-label>
+            {{getClusterName(cluster)}}
+          </ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-note> {{cluster.planid}}</ion-note>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+        <ion-icon name="lock" style="float:right"></ion-icon>
+      </ion-col>
+      <!-- <ion-note>{{cluster.planid}}</ion-note> -->
+    </ion-item>
+  </ion-list>
+
 </ion-content>
