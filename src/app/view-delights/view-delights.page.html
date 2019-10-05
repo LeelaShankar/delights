@@ -1,21 +1,15 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Delights
+      <ion-icon name="arrow-round-back" style="float:left" (click)="close()"></ion-icon>
+      <ion-label style="margin-left: 5%"> Delights </ion-label>
       <ion-icon name="log-out" style="float: right" (click)="logout()"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
 
-  <ion-fab vertical="top" horizontal="middle" style="margin-left:37%">
-
-    <ion-fab-button>
-      <ion-icon name="close" (click)="close()"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
-  <ion-list style="margin-top: 20%">
+  <ion-list>
     <ion-item *ngFor="let cluster of clusters">
       <ion-col>
         <ion-row>
@@ -28,7 +22,10 @@
         </ion-row>
       </ion-col>
       <ion-col>
-        <ion-icon name="lock" style="float:right"></ion-icon>
+        <!-- <ion-icon name="unlock" style="float:right" (click)="getGifts(cluster)"></ion-icon> -->
+        <ion-icon [name]="getName(cluster)" [ngStyle]="{'float':'right','opacity':getName(cluster) == 'lock' ? 0.4 : 1}"
+          (click)="getGifts(cluster)">
+        </ion-icon>
       </ion-col>
       <!-- <ion-note>{{cluster.planid}}</ion-note> -->
     </ion-item>

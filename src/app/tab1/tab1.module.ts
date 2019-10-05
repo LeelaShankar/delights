@@ -13,6 +13,6 @@ import { ViewDelightsPage } from '../view-delights/view-delights.page';
     FormsModule,
     RouterModule.forChild([{ path: '', component: Tab1Page }])
   ],
-  declarations: [Tab1Page, ViewDelightsPage], entryComponents: [ViewDelightsPage]
+  declarations: [Tab1Page], entryComponents: []
 })
 export class Tab1PageModule { }

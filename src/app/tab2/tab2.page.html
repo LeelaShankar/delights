@@ -1,9 +1,48 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Delights
+      <ion-icon name="log-out" style="float: right" (click)="logout()"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+
+  <ion-segment [(ngModel)]="checkedSegment" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="inProgress" checked>
+      <ion-label>In Progress</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="delivered">
+      <ion-label>Delivered</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list *ngIf="checkedSegment =='inProgress'">
+
+    <ion-item *ngFor="let item of gifts">
+      <ion-col>
+        <ion-row>
+          <ion-label style="font-weight: bold;font-size: 15px"> {{item.giftname}} </ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label style="font-weight: bold; font-size: 13px;opacity: 0.8;"> {{item.status}} </ion-label>
+        </ion-row>
+      </ion-col>
+
+      <ion-col>
+        <ion-icon name="gift" style="float: right"></ion-icon>
+      </ion-col>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list *ngIf="checkedSegment =='delivered'">
+    <ion-card>
+      <ion-card-content>
+        <ion-label>No Delights Deliveries yet</ion-label>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+</ion-content>

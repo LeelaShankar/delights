@@ -7,7 +7,8 @@ const routes: Routes = [
     path: 'tab', loadChildren: "./tabs/tabs.module#TabsPageModule"
   },
   { path: 'temp-password', loadChildren: './temp-password/temp-password.module#TempPasswordPageModule' },
-  { path: 'view-delights', loadChildren: './view-delights/view-delights.module#ViewDelightsPageModule' }
+  { path: 'view-delights', loadChildren: './view-delights/view-delights.module#ViewDelightsPageModule' },
+  { path: 'view-gifts', loadChildren: './view-gifts/view-gifts.module#ViewGiftsPageModule' }
 ];
 @NgModule({
   imports: [

@@ -10,11 +10,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ViewGiftsPage } from './view-gifts/view-gifts.page';
+import { ViewDelightsPage } from './view-delights/view-delights.page';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  declarations: [AppComponent, ViewGiftsPage, ViewDelightsPage],
+  entryComponents: [ViewGiftsPage, ViewDelightsPage],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule, FormsModule],
   providers: [
     StatusBar,
     SplashScreen,

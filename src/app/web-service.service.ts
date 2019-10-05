@@ -30,4 +30,25 @@ export class WebServiceService {
     return this.http.post<any>(obsoluteUrl, params)
   }
 
+  getGiftsGroup(url: string): Observable<any> {
+    let obsoluteUrl = this.serviceUrl + url;
+    return this.http.get<any>(obsoluteUrl)
+  }
+
+  getGiftsCategory(url: string): Observable<any> {
+    let obsoluteUrl = this.serviceUrl + url;
+    return this.http.get<any>(obsoluteUrl)
+  }
+
+  getSubcategory(params: any): Observable<any> {
+    let url = this.serviceUrl + 'api/subcategories/category';
+    return this.http.post<any>(url, params)
+  }
+
+  getGiftsHistory(url: string, params: any): Observable<any> {
+    let obsoluteUrl = this.serviceUrl + url;
+
+    return this.http.post<any>(obsoluteUrl, params)
+  }
+
 }
