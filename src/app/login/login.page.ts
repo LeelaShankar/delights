@@ -36,8 +36,14 @@ export class LoginPage implements OnInit {
     if (res.message == "Auth successful") {
       localStorage.setItem('token', res.token);
       localStorage.setItem('emailid', res.emailid);
-      localStorage.setItem('organisationId', res.organizationid);
+      localStorage.setItem('organizationid', res.organizationid);
+      localStorage.setItem('userfirstname', res.userfirstname);
+      localStorage.setItem('userlastname', res.userlastname);
+      localStorage.setItem('dateofjoining', res.dateofjoining);
+      localStorage.setItem('organizationname', res.organizationname);
+      localStorage.setItem('designation', res.designation);
       localStorage.setItem('employeeId', res.userId);
+
       if (res.loginflag == '1') {
         self.router.navigate(['tab'])
       }

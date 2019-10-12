@@ -47,8 +47,42 @@ export class WebServiceService {
 
   getGiftsHistory(url: string, params: any): Observable<any> {
     let obsoluteUrl = this.serviceUrl + url;
-
     return this.http.post<any>(obsoluteUrl, params)
   }
 
+  getAddress(url: string): Observable<any> {
+    let obsoluteUrl = this.serviceUrl + url;
+    return this.http.get<any>(obsoluteUrl)
+  }
+
+  addAddress(url: string, params: any): Observable<any> {
+    let obsoluteUrl = this.serviceUrl + url;
+    return this.http.post<any>(obsoluteUrl, params)
+  }
+
+  finaliseGifts(url: string, params: any): Observable<any> {
+    let obsoluteUrl = this.serviceUrl + url;
+    return this.http.patch<any>(obsoluteUrl, params);
+  }
+
+  finaliseOrder(url, params): Observable<any> {
+    let obsoluteUrl = this.serviceUrl + url;
+    console.log('obsoluteeee', obsoluteUrl)
+    return this.http.post<any>(obsoluteUrl, params)
+  }
+
+  getUserDetails(url): Observable<any> {
+    let obsoluteUrl = this.serviceUrl + url;
+    return this.http.get(obsoluteUrl)
+  }
+
+  deleteAddress(url, params): Observable<any> {
+    let obsoluteUrl = this.serviceUrl + url;
+    return this.http.post(obsoluteUrl, params)
+  }
+
+  changePassword(url, params): Observable<any> {
+    let obsoluteUrl = this.serviceUrl + url;
+    return this.http.post(obsoluteUrl, params)
+  }
 }

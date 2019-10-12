@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="arrow-round-back" style="float:left" (click)="close()"></ion-icon>
+      <ion-label style="margin-left: 5%"> Profile </ion-label>
+      <ion-icon name="log-out" style="float: right" (click)="logout()"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">First Name</ion-label>
+        <ion-input readOnly [(ngModel)]="firstName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Last Name</ion-label>
+        <ion-input readOnly [(ngModel)]="lastName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Organization Name</ion-label>
+        <ion-input readOnly [(ngModel)]="organisationName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Designation</ion-label>
+        <ion-input readOnly [(ngModel)]="designation"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Date Of Joining</ion-label>
+        <ion-input readOnly [(ngModel)]="dateOfJoining"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

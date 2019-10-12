@@ -31,7 +31,7 @@ export class Tab1Page {
     let self = this;
     console.log('in open delights');
     let params: ViewDelightsDTO = new ViewDelightsDTO();
-    params.organizationid = localStorage.getItem('organisationId');
+    params.organizationid = localStorage.getItem('organizationid');
     params.employeeid = localStorage.getItem('employeeId')
     let viewDelightsObs = this.service.viewMyDelights('api/emptransactions/lockvalues', params)
     viewDelightsObs.subscribe(res => {

@@ -69,6 +69,7 @@ export class ViewDelightsPage implements OnInit {
   }
 
   async viewGiftsPage(cluster, categoryData) {
+    cluster.groupname = this.getClusterName(cluster)
     let modal = await this.modalCtrl.create({
       component: ViewGiftsPage,
       componentProps: {

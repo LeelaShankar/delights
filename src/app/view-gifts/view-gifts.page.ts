@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavParams, NavController, ModalController } from '@ionic/angular';
 import { WebServiceService } from '../web-service.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { GiftSelectionPage } from '../gift-selection/gift-selection.page';
 
 @Component({
   selector: 'app-view-gifts',
@@ -50,7 +51,7 @@ export class ViewGiftsPage implements OnInit {
       "Large": "bucketlargegifts",
       "Medium": "bucketmediumgifts",
       "Small": "bukcetsmallgifts",
-      "Xsmall": "bucketxsmallgifts",
+      "XSmall": "bucketxsmallgifts",
       "0": "bucketxsmallgifts",
     }
 
@@ -64,7 +65,13 @@ export class ViewGiftsPage implements OnInit {
     giftType = filteringObj[selectedDelight.planid]
     self.gifts = data.category[giftType];
     self.giftsFiltered = self.giftsFiltered.concat(self.gifts)
-    console.log('giftType', giftType, 'giftss', self.gifts)
+    console.log('giftType', giftType, 'giftss', self.gifts);
+    let url = 'api/employees/' + localStorage.getItem('employeeId')
+    this.service.getUserDetails(url).subscribe(res => {
+      console.log('resss', res);
+      localStorage.setItem('department', res.userdetails.department);
+      localStorage.setItem('dateofbirth', res.userdetails.dateofbirth)
+    })
   }
 
   logout() {
@@ -91,6 +98,23 @@ export class ViewGiftsPage implements OnInit {
       }
     }
     this.giftsFiltered = this.giftsFiltered.concat(this.gifts.filter(x => x.location == 'All'))
-
   }
+
+  selectGifts(gift) {
+    console.log('in select Gofts');
+    this.openGifts(gift);
+  }
+
+  async openGifts(gift) {
+    let data = this.navParams.data;
+    let modal = await this.modalCtrl.create({
+      component: GiftSelectionPage,
+      componentProps: {
+        delight: data.delight,
+        category: data.category, gift: gift
+      }
+    })
+    return await modal.present();
+  }
+
 }

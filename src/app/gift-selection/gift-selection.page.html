@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="arrow-round-back" style="float:left" (click)="close()"></ion-icon>
+      <ion-label style="margin-left: 5%"> Delights </ion-label>
+      <ion-icon name="log-out" style="float: right" (click)="logout()"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <mat-vertical-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ion-card>
+          <ion-item>
+            <ion-label position="floating">Select Address</ion-label>
+            <ion-select placeholder="Select Address" formControlName="address" (ionChange)="addressChanged()">
+              <ion-select-option *ngFor="let val of addressList" [value]="val.value">
+                {{val.text}}
+              </ion-select-option>
+            </ion-select>
+            <ion-note>Please select an address for delivery</ion-note>
+          </ion-item>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <a href="Javascript:void(0)" (click)="addNewAddress = true">Add New Address </a>
+            <div *ngIf="addNewAddress">
+              <ion-item>
+                <ion-label position="floating">Unit/Street No</ion-label>
+                <ion-input type="text" formControlName="streetNo"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Street Name</ion-label>
+                <ion-input type="text" formControlName="streetName"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">City</ion-label>
+                <ion-input type="text" formControlName="city"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">State</ion-label>
+                <ion-input type="text" formControlName="state"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Mobile</ion-label>
+                <ion-input type="text" formControlName="mobile"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Address Type</ion-label>
+                <ion-select placeholder="Address Type" formControlName="addressType">
+                  <ion-select-option *ngFor="let val of addressTypes" [value]="val">
+                    {{val}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-button color="primary"> Cancel</ion-button>
+                <ion-button color="secondary" (click)="addAddress()">Save</ion-button>
+              </ion-item>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </form>
+      <button mat-button matStepperNext style="background-color: yellow">Next</button>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Provide Feedback</ng-template>
+        <ion-label>Please provide your valuable feedback</ion-label>
+        <ion-item>
+          <ion-row>
+            <ion-col>
+              <ion-label position="floating">Message</ion-label>
+              <ion-textarea formControlName="message"></ion-textarea>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+        <ion-row>
+          <ion-col>
+            <ion-label>Please rate the app</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-icon *ngFor="let star of stars; let i = index" (click)="starClicked(i)" [name]="star"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </form>
+      <button mat-button matStepperNext style="background-color: yellow" (click)="finaliseGifts()">Finalise</button>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div>
+        <ion-label>Wonderful. We will notify you once the gift is shipped.</ion-label>
+      </div>
+      <ion-item>
+        <button mat-button style="background-color: yellow" (click)="close()">Close</button>
+      </ion-item>
+    </mat-step>
+  </mat-vertical-stepper>
+
+
+</ion-content>

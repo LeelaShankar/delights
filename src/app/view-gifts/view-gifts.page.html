@@ -35,7 +35,7 @@
         <ion-label style="white-space: normal"> {{gift.giftname}} </ion-label>
       </ion-row>
       <ion-row>
-        <ion-button expand="block"> Grab it</ion-button>
+        <ion-button expand="block" (click)="selectGifts(gift)"> Grab it</ion-button>
       </ion-row>
     </ion-col>
   </ion-item>
