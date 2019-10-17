@@ -14,15 +14,7 @@ export class Tab2Page {
 
 
   ngOnInit() {
-    let self = this;
-    let url: string = 'api/orders/giftshistory';
-    let params: any = {};
-    params.employeeid = localStorage.getItem('employeeId');
-    let giftsHistoryObs = this.service.getGiftsHistory(url, params);
-    giftsHistoryObs.subscribe(res => {
-      console.log('ressss', res)
-      self.gifts = res.activegiftsdata;
-    })
+
   }
 
   logout() {
@@ -33,6 +25,19 @@ export class Tab2Page {
   segmentChanged(evt) {
     console.log('checked segment', this.checkedSegment)
     console.log('evttt', evt)
+  }
+
+  ionViewDidEnter() {
+    let self = this;
+    console.log('in ion view entered')
+    let url: string = 'api/orders/giftshistory';
+    let params: any = {};
+    params.employeeid = localStorage.getItem('employeeId');
+    let giftsHistoryObs = this.service.getGiftsHistory(url, params);
+    giftsHistoryObs.subscribe(res => {
+      console.log('ressss', res)
+      self.gifts = res.activegiftsdata;
+    })
   }
 
 }

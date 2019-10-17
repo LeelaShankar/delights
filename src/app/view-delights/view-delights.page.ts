@@ -69,6 +69,7 @@ export class ViewDelightsPage implements OnInit {
   }
 
   async viewGiftsPage(cluster, categoryData) {
+    let self = this
     cluster.groupname = this.getClusterName(cluster)
     let modal = await this.modalCtrl.create({
       component: ViewGiftsPage,
@@ -77,11 +78,15 @@ export class ViewDelightsPage implements OnInit {
         category: categoryData
       }
     })
+    modal.onDidDismiss().then(x => {
+      setTimeout(() => {
+        if (x.data && x.data.data == 'Order Finalised') self.close()
+      }, 50);
+    })
     return await modal.present()
   }
 
   getGifts(cluster) {
-
     console.log('cluster icon', cluster.icon)
     if (cluster.icon == 'unlock') {
       let self = this;
@@ -98,4 +103,5 @@ export class ViewDelightsPage implements OnInit {
       // })
     }
   }
+
 }

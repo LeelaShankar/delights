@@ -79,8 +79,9 @@ export class ViewGiftsPage implements OnInit {
     this.navCtrl.navigateRoot('')
   }
 
-  close() {
-    this.modalCtrl.dismiss()
+  close(res?) {
+    console.log('in closeee')
+    this.modalCtrl.dismiss(res)
   }
 
   filterGifts(val) {
@@ -106,6 +107,7 @@ export class ViewGiftsPage implements OnInit {
   }
 
   async openGifts(gift) {
+    let self = this;
     let data = this.navParams.data;
     let modal = await this.modalCtrl.create({
       component: GiftSelectionPage,
@@ -113,6 +115,14 @@ export class ViewGiftsPage implements OnInit {
         delight: data.delight,
         category: data.category, gift: gift
       }
+    })
+
+    modal.onDidDismiss().then(x => {
+      console.log('xxxx', x)
+      setTimeout(() => {
+        console.log('self', self)
+        if (x.data && x.data.data == 'Order Finalised') self.close(x);
+      }, 50)
     })
     return await modal.present();
   }

@@ -56,8 +56,8 @@ export class GiftSelectionPage implements OnInit {
       self.addressList.unshift({ 'value': null, 'text': "None" })
     })
   }
-  close() {
-    this.modalCtrl.dismiss()
+  close(res?) {
+    this.modalCtrl.dismiss(res);
   }
   logout() {
     localStorage.clear();
@@ -196,7 +196,6 @@ export class GiftSelectionPage implements OnInit {
       console.log('errr', err)
     })
     console.log('in finalise gifts', url)
-
   }
 
   async openAlert(res) {
@@ -207,8 +206,7 @@ export class GiftSelectionPage implements OnInit {
         text: 'Ok',
         role: 'cancel',
         handler: () => {
-          self.close()
-
+          self.close({ data: 'Order Finalised' })
         }
       }]
     })

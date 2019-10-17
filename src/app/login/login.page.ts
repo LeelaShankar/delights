@@ -22,7 +22,8 @@ export class LoginPage implements OnInit {
     let token = localStorage.getItem('token');
     console.log('tokenn', token)
     if (token) {
-      this.router.navigate(['tab'])
+      // this.router.navigate(['tab'])
+      this.navCtrl.navigateRoot('tab')
     }
   }
 
@@ -45,10 +46,12 @@ export class LoginPage implements OnInit {
       localStorage.setItem('employeeId', res.userId);
 
       if (res.loginflag == '1') {
-        self.router.navigate(['tab'])
+        self.navCtrl.navigateRoot('tab')
+        // self.router.navigate(['tab'])
       }
       else if (res.loginflag == '0') {
-        this.router.navigate(['temp-password'])
+        self.navCtrl.navigateRoot('temp-password')
+        // this.router.navigate(['temp-password'])
       }
     }
     else {
