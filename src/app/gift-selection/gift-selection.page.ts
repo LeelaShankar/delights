@@ -190,7 +190,6 @@ export class GiftSelectionPage implements OnInit {
         self.openAlert(resp)
       }, error => {
         console.log('errorrrr', error)
-
       })
     }, err => {
       console.log('errr', err)

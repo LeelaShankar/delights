@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController, AlertController } from '@ionic/angular';
+import { NavController, AlertController, Platform } from '@ionic/angular';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http'
 import { WebServiceService } from '../web-service.service';
@@ -12,13 +12,16 @@ import { LoginRespDTO } from '../Interfaces/loginRespDTO';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
 export class LoginPage implements OnInit {
-  loginDisable: boolean = false
+  loginDisable: boolean = false;
   loginForm: FormGroup = new FormGroup({
     'email': new FormControl(),
     'password': new FormControl()
-  })
-  constructor(public router: Router, public webservice: WebServiceService, public alertCtrl: AlertController, public navCtrl: NavController) {
+  });
+  subscription: any;
+  constructor(public router: Router, public webservice: WebServiceService, public alertCtrl: AlertController, public navCtrl: NavController,
+    public platform: Platform) {
     let token = localStorage.getItem('token');
     console.log('tokenn', token)
     if (token) {
@@ -31,6 +34,14 @@ export class LoginPage implements OnInit {
     console.log('in login page')
 
   }
+
+  ionViewDidEnter() {
+    this.subscription = this.platform.backButton.subscribe(() => {
+      navigator['app'].exitApp();
+    });
+  }
+
+  ionViewWillLeave() { this.subscription.unsubscribe(); }
 
   successNavigation(res: LoginRespDTO) {
     let self = this;

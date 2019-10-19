@@ -3,6 +3,7 @@ import { NavParams, NavController, ModalController } from '@ionic/angular';
 import { WebServiceService } from '../web-service.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { GiftSelectionPage } from '../gift-selection/gift-selection.page';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 
 @Component({
   selector: 'app-view-gifts',
@@ -20,7 +21,8 @@ export class ViewGiftsPage implements OnInit {
     'location': new FormControl()
   })
   giftsFiltered: Array<any> = [];
-  constructor(public navParams: NavParams, public navCtrl: NavController, public service: WebServiceService, public modalCtrl: ModalController) {
+  constructor(public navParams: NavParams, public navCtrl: NavController, public service: WebServiceService, public modalCtrl: ModalController,
+    public photoViewer: PhotoViewer) {
     let self = this;
     let locationParams: any = {
       "supercategoryname": "Location"
@@ -69,8 +71,8 @@ export class ViewGiftsPage implements OnInit {
     let url = 'api/employees/' + localStorage.getItem('employeeId')
     this.service.getUserDetails(url).subscribe(res => {
       console.log('resss', res);
-      localStorage.setItem('department', res.userdetails.department);
-      localStorage.setItem('dateofbirth', res.userdetails.dateofbirth)
+      localStorage.setItem('department', res.userdetails[0].department);
+      localStorage.setItem('dateofbirth', res.userdetails[0].dateofbirth)
     })
   }
 
@@ -125,6 +127,11 @@ export class ViewGiftsPage implements OnInit {
       }, 50)
     })
     return await modal.present();
+  }
+
+  openImage(gift) {
+    let imagePath = gift.giftimagepath.replace(/ /g, '%20')
+    this.photoViewer.show(imagePath, gift.giftname, { copyToReference: true });
   }
 
 }

@@ -13,6 +13,7 @@ export class ViewDelightsPage implements OnInit {
   clusters: Array<any> = []
   groupNames: Array<any> = [];
   iconProperties: { 'icon': string } = { "icon": ' ' };
+  empName: any;
   constructor(public navParams: NavParams, public navCtrl: NavController, public modalCtrl: ModalController, public service: WebServiceService) {
 
   }
@@ -22,6 +23,8 @@ export class ViewDelightsPage implements OnInit {
     let data = this.navParams.data.data
     this.clusters = data.activetransactions;
     this.groupNames = data.groupnames;
+    this.empName = localStorage.getItem('userfirstname') + " " + localStorage.getItem('userlastname');
+
   }
 
   logout() {

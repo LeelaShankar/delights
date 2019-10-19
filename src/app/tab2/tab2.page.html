@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="delightsHeader">
     <ion-title>
       Delights
       <ion-icon name="log-out" style="float: right" (click)="logout()"></ion-icon>
@@ -9,12 +9,25 @@
 
 <ion-content>
 
+  <ion-item style="--ion-background-color:#FFDA33" lines="none">
+    <ion-col>
+      <ion-row>
+        <ion-label>
+          <b>DELIGHTS TRACKER</b>
+        </ion-label>
+      </ion-row>
+    </ion-col>
+    <ion-col style="height: 100px">
+      <ion-img src="../../assets/trackingImg.png" class="colImg"> </ion-img>
+    </ion-col>
+  </ion-item>
+
   <ion-segment [(ngModel)]="checkedSegment" (ionChange)="segmentChanged($event)">
     <ion-segment-button value="inProgress" checked>
-      <ion-label>In Progress</ion-label>
+      <ion-label><b>In Progress</b></ion-label>
     </ion-segment-button>
     <ion-segment-button value="delivered">
-      <ion-label>Delivered</ion-label>
+      <ion-label><b>Delivered</b></ion-label>
     </ion-segment-button>
   </ion-segment>
 
@@ -29,16 +42,30 @@
           <ion-label style="font-weight: bold; font-size: 13px;opacity: 0.8;"> {{item.status}} </ion-label>
         </ion-row>
       </ion-col>
-
       <ion-col>
-        <ion-icon name="gift" style="float: right"></ion-icon>
+        <ion-img class="imgIcon" src="../../assets/{{item.status}}.png"></ion-img>
+        <!-- <ion-icon name="gift" style="float: right"></ion-icon> -->
       </ion-col>
     </ion-item>
 
   </ion-list>
 
   <ion-list *ngIf="checkedSegment =='delivered'">
-    <ion-card>
+    <ion-item *ngFor="let item of deliveredGifts" [hidden]="deliveredGifts.length == 0">
+      <ion-col>
+        <ion-row>
+          <ion-label style="font-weight: bold;font-size: 15px"> {{item.giftname}} </ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label style="font-weight: bold; font-size: 13px;opacity: 0.8;"> {{item.status}} </ion-label>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+        <ion-img class="imgIcon" src="../../assets/{{item.status}}.png"></ion-img>
+        <!-- <ion-icon name="gift" style="float: right"></ion-icon> -->
+      </ion-col>
+    </ion-item>
+    <ion-card [hidden]="deliveredGifts.length>0">
       <ion-card-content>
         <ion-label>No Delights Deliveries yet</ion-label>
       </ion-card-content>

@@ -16,3 +16,44 @@
   margin-top: 50px;
   margin-left: 50%;
 }
+
+
+.textAlign {
+  display: inline-block;
+  border-bottom: 5px solid black;
+  color: black;
+  width: 150px;
+}
+
+.delightsLabel {
+  text-align: center;
+  width: 100%;
+  height: 42px;
+  line-height: 40px;
+  position: absolute;
+  bottom: 25px;
+  display: inline-block;
+  // margin-left: calc(50% - 75px);
+  // margin-right: calc(50% - 25px);
+  // height: 100%;
+}
+
+.delightsHeader {
+  --background: #111D12;
+  color: white
+}
+
+ion-item {
+  --ion-background-color: #FFDA33;
+}
+
+
+.cardImg {
+  text-align: center;
+  height: 50%;
+  margin-left: 10%;
+}
+
+ion-content {
+  --ion-background-color: #111D12;
+}

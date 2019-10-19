@@ -26,6 +26,7 @@ export class AddNewAddressPage implements OnInit {
 
   ngOnInit() {
     this.locationCategories = [{ 'AddressType': 'Home' }, { 'AddressType': 'Work' }, { 'AddressType': 'Others' }]
+    console.log('navCtrl', this.navCtrl, 'modalCtrr', this.modalCtrl)
   }
 
   saveAddress() {

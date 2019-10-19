@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="delightsHeader">
     <ion-title>
       <ion-icon name="arrow-round-back" style="float:left" (click)="close()"></ion-icon>
       <ion-label style="margin-left: 5%"> Delights </ion-label>
@@ -25,19 +25,23 @@
         </ion-select-option>
       </ion-select>
     </ion-item>
-  </form>
-  <ion-item *ngFor="let gift of giftsFiltered">
-    <ion-col>
-      <ion-img [src]="gift.giftimagepath"></ion-img>
-    </ion-col>
-    <ion-col style="width: 50%;">
-      <ion-row style="height: 65px">
-        <ion-label style="white-space: normal"> {{gift.giftname}} </ion-label>
-      </ion-row>
-      <ion-row>
-        <ion-button expand="block" (click)="selectGifts(gift)"> Grab it</ion-button>
-      </ion-row>
-    </ion-col>
-  </ion-item>
 
+
+  </form>
+  <ion-list id="giftList">
+
+    <ion-item *ngFor="let gift of giftsFiltered">
+      <ion-col>
+        <ion-img [src]="gift.giftimagepath" (click)="openImage(gift)"></ion-img>
+      </ion-col>
+      <ion-col style="width: 50%;">
+        <ion-row style="height: 65px">
+          <ion-label style="white-space: normal"> {{gift.giftname}} </ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-button expand="block" (click)="selectGifts(gift)"> Grab it</ion-button>
+        </ion-row>
+      </ion-col>
+    </ion-item>
+  </ion-list>
 </ion-content>

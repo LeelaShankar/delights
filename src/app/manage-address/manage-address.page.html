@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="delightsHeader">
     <ion-title>
       <ion-icon name="arrow-round-back" style="float:left" (click)="close()"></ion-icon>
       <ion-label style="margin-left: 5%"> Manage Address </ion-label>
@@ -16,7 +16,7 @@
     </ion-item>
   </ion-list>
   <ion-list>
-    <ion-card *ngFor="let address of addressList">
+    <ion-card *ngFor="let address of addressList" style="height: 100%; background-color: #FFBF00">
       <ion-card-header>
         <ion-icon style="float: right;margin-left: 4%;font-size: 20px;" name="trash" (click)="deleteAddress(address)">
         </ion-icon>
@@ -55,9 +55,9 @@
           <ion-label position="floating">Address Type</ion-label>
           <ion-input type="text" [(ngModel)]="address.AddressType" [disabled]="!address.canEdit"></ion-input>
         </ion-item>
-        <ion-item *ngIf="address.canEdit">
-          <ion-button color="primary" (click)="saveAddress(address)">Save</ion-button>
-        </ion-item>
+        <!-- <ion-item *ngIf="address.canEdit"> -->
+        <ion-button *ngIf="address.canEdit" expand="full" (click)="saveAddress(address)">Save</ion-button>
+        <!-- </ion-item> -->
       </ion-card-content>
     </ion-card>
   </ion-list>

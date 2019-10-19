@@ -7,14 +7,16 @@ import { WebServiceService } from '../web-service.service';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
+
 export class Tab2Page {
   checkedSegment: string = 'inProgress';
   gifts: Array<any> = [];
+  deliveredGifts: Array<any> = [];
+
   constructor(public navCtrl: NavController, public service: WebServiceService) { }
 
-
   ngOnInit() {
-
+    console.log('navCtrl', this.navCtrl)
   }
 
   logout() {
@@ -24,7 +26,6 @@ export class Tab2Page {
 
   segmentChanged(evt) {
     console.log('checked segment', this.checkedSegment)
-    console.log('evttt', evt)
   }
 
   ionViewDidEnter() {
@@ -36,7 +37,8 @@ export class Tab2Page {
     let giftsHistoryObs = this.service.getGiftsHistory(url, params);
     giftsHistoryObs.subscribe(res => {
       console.log('ressss', res)
-      self.gifts = res.activegiftsdata;
+      self.gifts = res.activegiftsdata.filter(x => x.status != 'delivered')
+      self.deliveredGifts = res.activegiftsdata.filter(x => x.status == 'delivered')
     })
   }
 

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="delightsHeader">
     <ion-title>
       <ion-icon name="arrow-round-back" style="float:left" (click)="close()"></ion-icon>
       <ion-label style="margin-left: 5%"> Delights </ion-label>
@@ -11,9 +11,10 @@
 <ion-content>
 
 
-  <mat-vertical-stepper #stepper>
+  <mat-vertical-stepper #stepper style="color: white">
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Manage Address</ng-template>
         <ion-card>
           <ion-item>
             <ion-label position="floating">Select Address</ion-label>
@@ -58,7 +59,7 @@
                 </ion-select>
               </ion-item>
               <ion-item>
-                <ion-button color="primary"> Cancel</ion-button>
+                <ion-button color="primary" (click)="addNewAddress = false"> Cancel</ion-button>
                 <ion-button color="secondary" (click)="addAddress()">Save</ion-button>
               </ion-item>
             </div>

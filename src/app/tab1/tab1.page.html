@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="delightsHeader">
     <ion-title>
       Delights
       <ion-icon name="log-out" style="float: right" (click)="logout()"></ion-icon>
@@ -9,9 +9,27 @@
 
 <ion-content>
 
-  <ion-card style="height: 100%;background-color: #FFBF00">
-    <div style="text-align: center">
-      <ion-label (click)="openDelights()">View My Delights</ion-label>
+  <ion-card style="height: 100%; background-color: #FFDA33">
+    <ion-item lines="none">
+      <ion-label style="text-align: center">
+        <b> MINDBOARD.INC</b>
+      </ion-label>
+    </ion-item>
+    <ion-item style="top:10%;text-align:center" lines="none">
+      <ion-label>
+        Hello {{empName}},
+      </ion-label>
+    </ion-item>
+    <!-- <div>
+      <img src="../../assets/delightImg.png" style="text-align: center">
+    </div> -->
+
+    <ion-item style="top: 10%;height: 45%" lines="none">
+      <ion-img src="../../assets/delightImg.png" class="cardImg"></ion-img>
+    </ion-item>
+
+    <div class="delightsLabel" (click)="openDelights()">
+      <ion-label class="textAlign"><b>View My Delights</b></ion-label>
     </div>
   </ion-card>
 

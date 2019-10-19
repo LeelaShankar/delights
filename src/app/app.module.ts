@@ -17,6 +17,7 @@ import { ViewProfilePage } from './view-profile/view-profile.page';
 import { ChangePasswordPage } from './change-password/change-password.page';
 import { ManageAddressPage } from './manage-address/manage-address.page';
 import { AddNewAddressPage } from './add-new-address/add-new-address.page';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 
 @NgModule({
   declarations: [AppComponent, ViewGiftsPage, ViewDelightsPage, GiftSelectionPage,
@@ -34,7 +35,8 @@ import { AddNewAddressPage } from './add-new-address/add-new-address.page';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    PhotoViewer
   ],
   bootstrap: [AppComponent]
 })

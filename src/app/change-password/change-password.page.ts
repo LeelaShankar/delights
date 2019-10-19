@@ -20,6 +20,7 @@ export class ChangePasswordPage implements OnInit {
     public alertCtrl: AlertController) { }
 
   ngOnInit() {
+    console.log('navCtrl', this.navCtrl)
   }
 
   logout() {

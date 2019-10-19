@@ -1,0 +1,27 @@
+.delightsHeader {
+    --background: black;
+    color: white
+}
+
+ion-content {
+
+    --ion-background-color: #111D12;
+}
+
+
+ion-item {
+    --ion-background-color: black;
+    --min-height: 66px;
+    color: white;
+}
+
+#giftList {
+    ion-item {
+        padding: 5px;
+    }
+}
+
+ion-button {
+    --background: #FFBF00;
+    color: black
+}

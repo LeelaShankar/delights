@@ -20,7 +20,8 @@ export class Tab3Page {
 
   ngOnInit() {
     this.profileItems = [{ 'icon': 'person', 'name': 'Profile' }, { 'icon': 'bookmarks', 'name': 'Manage Address' },
-    { 'icon': 'key', 'name': 'Change Password' }]
+    { 'icon': 'key', 'name': 'Change Password' }];
+
   }
 
   navigate(item) {
